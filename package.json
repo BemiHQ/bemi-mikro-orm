@@ -1,0 +1,73 @@
+{
+  "name": "@bemi-db/mikro-orm",
+  "version": "0.3.0",
+  "description": "Automatic data change tracking for MikroORM",
+  "main": "dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "bin": {
+    "bemi": "dist/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/BemiHQ/bemi-mikro-orm.git"
+  },
+  "author": "",
+  "license": "LGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/BemiHQ/bemi-mikro-orm/issues"
+  },
+  "homepage": "https://github.com/BemiHQ/bemi-mikro-orm#readme",
+  "dependencies": {
+    "commander": "^11.1.0",
+    "knex": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.11",
+    "@types/knex": "^0.16.1",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  },
+  "scripts": {
+    "build": "tsup",
+    "test": "jest --watch"
+  },
+  "registry-url": "https://registry.npmjs.org/",
+  "tsup": {
+    "entry": [
+      "src/index.ts",
+      "src/cli.ts"
+    ],
+    "format": [
+      "cjs",
+      "esm"
+    ],
+    "dts": true,
+    "splitting": false,
+    "sourcemap": true,
+    "clean": true
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
+}
