@@ -5,7 +5,11 @@ import Knex from "knex";
 const ASYNC_LOCAL_STORAGE = new AsyncLocalStorage();
 const MAX_CONTEXT_SIZE = 1000000 // ~ 1MB
 
-const injectContext = () => {
+let wrappedOriginalQuery = false;
+
+const wrapOriginalQuery = () => {
+  if (wrappedOriginalQuery) return;
+
   const originalQuery = Knex.Client.prototype.query as any
   Knex.Client.prototype.query = function(conn: any, obj: any) {
     const writeOperationsRegex = /(INSERT|UPDATE|DELETE)\s/gi;
@@ -24,12 +28,13 @@ const injectContext = () => {
     }
     return originalQuery.call(this, conn, obj);
   };
+  wrappedOriginalQuery = true;
 }
 
 export const setContext = (
   callback: (req: Request) => any
 ) => {
-  injectContext();
+  wrapOriginalQuery();
 
   return (req: Request, _res: Response, next: NextFunction) => {
     const config = callback(req);
