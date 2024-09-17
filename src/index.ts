@@ -44,3 +44,5 @@ export const setContext = (
     });
   };
 };
+
+export { bemiUpSql, bemiDownSql } from "./migration-helpers";

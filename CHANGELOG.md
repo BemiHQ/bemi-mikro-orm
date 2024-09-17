@@ -1,5 +1,9 @@
 # Changelog
 
+#### v0.3.2 - 2024-09-17
+
+- Add migration helper functions
+
 #### v0.3.1 - 2024-09-17
 
 - Allow calling `setContext` multiple times
