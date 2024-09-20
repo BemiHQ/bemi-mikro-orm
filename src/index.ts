@@ -45,4 +45,10 @@ export const setContext = (
   };
 };
 
+
+export const bemiContext = (context: any) => {
+  wrapOriginalQuery();
+  ASYNC_LOCAL_STORAGE.enterWith(context);
+}
+
 export { bemiUpSql, bemiDownSql } from "./migration-helpers";
